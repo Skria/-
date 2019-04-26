@@ -753,6 +753,8 @@ namespace LuaInterface
             if (LuaDLL.lua_pcall(L, args, LuaDLL.LUA_MULTRET, oldTop) != 0)
             {
                 string error = LuaToString(-1);
+                LuaFunction func = this.GetFunction("GetClassTracerTop");
+                if (error == null || error == string.Empty) error = func.Invoke<string>();
                 throw new LuaException(error, LuaException.GetLastError());
             }            
         }
