@@ -2,11 +2,13 @@
 require("Base/ClassLoader")
 require("Base/Class")
 require("Function")
+require("Const")
+require("PureMVC/Patterns/Facade/Facade")
+require("Base/ClassGC")
 
 function Main()					
 	print("logic start")	
 
-	
 end
 
 -- --场景切换通知
