@@ -113,15 +113,6 @@ namespace LuaFramework {
             lua.DoFile(filename);
         }
 
-        // Update is called once per frame
-        public object[] CallFunction(string funcName, params object[] args) {
-            LuaFunction func = lua.GetFunction(funcName);
-            if (func != null) {
-                return func.LazyCall(args);
-            }
-            return null;
-        }
-
         public void LuaGC() {
             lua.LuaGC(LuaGCOptions.LUA_GCCOLLECT);
         }
@@ -134,5 +125,65 @@ namespace LuaFramework {
             lua = null;
             loader = null;
         }
+
+
+        public T CallFunction<T>(string funcName, params object[] args)
+        {
+            LuaFunction func = lua.GetFunction(funcName);
+            if (func != null)
+            {
+                switch (args.Length)
+                {
+                    case 0:
+                        return func.Invoke<T>();
+                    case 1:
+                        return func.Invoke<object, T>(args[0]);
+                    case 2:
+                        return func.Invoke<object, object, T>(args[0], args[1]);
+                    case 3:
+                        return func.Invoke<object, object, object, T>(args[0], args[1], args[2]);
+                    case 4:
+                        return func.Invoke<object, object, object, object, T>(args[0], args[1], args[2], args[3]);
+                    case 5:
+                        return func.Invoke<object, object, object, object, object, T>(args[0], args[1], args[2], args[3], args[4]);
+                }
+                //return func.LazyCall(args);
+            }
+            return default(T);
+        }
+
+        public T CallObjectFunction<T>(int handle, string funcName, params object[] args) where T : class
+        {
+            object[] argsN = new object[args.Length + 2];
+            argsN[0] = handle;
+            argsN[1] = funcName;
+            for (int i = 0; i < args.Length; i++)
+            {
+                argsN[i + 2] = args[i];
+            }
+            return CallFunction<T>("CallHandleFunction", argsN);
+        }
+
+        public void CallFunction(string funcName, params object[] args)
+        {
+            CallFunction<object>(funcName, args);
+        }
+
+        public void CallObjectFunction(int handle, string funcName, params object[] args)
+        {
+            CallObjectFunction<object>(handle, funcName, args);
+        }
+
+        public int InitializeLuaObject(string luaClassName, params object[] args)
+        {
+            object[] argsN = new object[args.Length + 1];
+            argsN[0] = luaClassName;
+            for (int i = 0; i < args.Length; i++)
+            {
+                argsN[i + 1] = args[i];
+            }
+            return CallFunction<int>("InitializeClassHandle", argsN);
+        }
+
     }
 }

@@ -34,6 +34,7 @@ end
 function ClassLoader:InstantiateHandle(className, ...)
     local object = self:Instantiate(className, ...)
     object.__fromUnity = true
+    print(className .. "~~~" .. object.__handle)
     if object then
         return object.__handle
     end
@@ -49,7 +50,9 @@ function InitializeClassHandle(className, ...)
 end
 
 function CallHandleFunction(handle, func, ...)
+    print(handle)
     local inst = ClassGC:GetInstance(handle)
+    printTable(inst)
     local result = nil
     if inst[func] then
         result = inst[func](inst, ...)

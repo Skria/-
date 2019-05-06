@@ -9,9 +9,11 @@ public class LuaFramework_LuaManagerWrap
 		L.BeginClass(typeof(LuaFramework.LuaManager), typeof(Manager));
 		L.RegFunction("InitStart", InitStart);
 		L.RegFunction("DoFile", DoFile);
-		L.RegFunction("CallFunction", CallFunction);
 		L.RegFunction("LuaGC", LuaGC);
 		L.RegFunction("Close", Close);
+		L.RegFunction("CallFunction", CallFunction);
+		L.RegFunction("CallObjectFunction", CallObjectFunction);
+		L.RegFunction("InitializeLuaObject", InitializeLuaObject);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
@@ -51,25 +53,6 @@ public class LuaFramework_LuaManagerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int CallFunction(IntPtr L)
-	{
-		try
-		{
-			int count = LuaDLL.lua_gettop(L);
-			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject<LuaFramework.LuaManager>(L, 1);
-			string arg0 = ToLua.CheckString(L, 2);
-			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
-			object[] o = obj.CallFunction(arg0, arg1);
-			ToLua.Push(L, o);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int LuaGC(IntPtr L)
 	{
 		try
@@ -94,6 +77,62 @@ public class LuaFramework_LuaManagerWrap
 			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject<LuaFramework.LuaManager>(L, 1);
 			obj.Close();
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int CallFunction(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject<LuaFramework.LuaManager>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
+			obj.CallFunction(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int CallObjectFunction(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject<LuaFramework.LuaManager>(L, 1);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			string arg1 = ToLua.CheckString(L, 3);
+			object[] arg2 = ToLua.ToParamsObject(L, 4, count - 3);
+			obj.CallObjectFunction(arg0, arg1, arg2);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int InitializeLuaObject(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject<LuaFramework.LuaManager>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
+			int o = obj.InitializeLuaObject(arg0, arg1);
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{

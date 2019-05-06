@@ -6,7 +6,7 @@ using UnityEngine;
 public class SMain : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         AddManager();
     }
@@ -19,7 +19,7 @@ public class SMain : MonoBehaviour
 
     void AddManager()
     {
-        AppFacade.Instance.AddManager<LuaManager>(ManagerName.Lua);
+        App.Instance.AddManager<LuaManager>(ManagerName.Lua);
         //AppFacade.Instance.AddManager<PanelManager>(ManagerName.Panel);
         //AppFacade.Instance.AddManager<SoundManager>(ManagerName.Sound);
         //AppFacade.Instance.AddManager<TimerManager>(ManagerName.Timer);

@@ -27,19 +27,19 @@ namespace LuaFramework {
         }
 
         public void OnInit() {
-            CallMethod("Start");
+            //CallMethod("Start");
         }
 
         public void Unload() {
-            CallMethod("Unload");
+            //CallMethod("Unload");
         }
 
-        /// <summary>
-        /// 执行Lua方法
-        /// </summary>
-        public object[] CallMethod(string func, params object[] args) {
-            return Util.CallMethod("Network", func, args);
-        }
+        ///// <summary>
+        ///// 执行Lua方法
+        ///// </summary>
+        //public object[] CallMethod(string func, params object[] args) {
+        //    return Util.CallMethod("Network", func, args);
+        //}
 
         ///------------------------------------------------------------------------------------
         public static void AddEvent(int _event, ByteBuffer data) {

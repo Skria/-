@@ -4,10 +4,11 @@ local _ENV = require("3rd.castl.runtime")
 
 
 ClassGC = {}
+print("!!!!!!!!!!!!!!!run")
 ClassGC.instanceMap = {}
 ClassGC.instanceClassMap = {}
 ClassGC.objectRefMap = {}
-ClassGC.curHandleId = 1
+ClassGC.curHandleId = 0
 ClassGC.autoRegister = false
 ClassGC.autoRecordRef = false
 --需要注册GC的

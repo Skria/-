@@ -34,7 +34,7 @@ namespace LuaFramework {
         public static string UserId = string.Empty;                 //用户ID
         public static int SocketPort = 0;                           //Socket服务器端口
         public static string SocketAddress = string.Empty;          //Socket服务器地址
-
+        public static string LuaGameUIRoot = "Game";
         public static string FrameworkRoot {
             get {
                 return Application.dataPath + "/" + AppName;

@@ -26,7 +26,6 @@ public class LuaFramework_UtilWrap
 		L.RegFunction("LogWarning", LogWarning);
 		L.RegFunction("LogError", LogError);
 		L.RegFunction("CheckRuntimeFile", CheckRuntimeFile);
-		L.RegFunction("CallMethod", CallMethod);
 		L.RegFunction("CheckEnvironment", CheckEnvironment);
 		L.RegFunction("New", _CreateLuaFramework_Util);
 		L.RegFunction("__tostring", ToLua.op_ToString);
@@ -400,25 +399,6 @@ public class LuaFramework_UtilWrap
 			ToLua.CheckArgsCount(L, 0);
 			int o = LuaFramework.Util.CheckRuntimeFile();
 			LuaDLL.lua_pushinteger(L, o);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int CallMethod(IntPtr L)
-	{
-		try
-		{
-			int count = LuaDLL.lua_gettop(L);
-			string arg0 = ToLua.CheckString(L, 1);
-			string arg1 = ToLua.CheckString(L, 2);
-			object[] arg2 = ToLua.ToParamsObject(L, 3, count - 2);
-			object[] o = LuaFramework.Util.CallMethod(arg0, arg1, arg2);
-			ToLua.Push(L, o);
 			return 1;
 		}
 		catch (Exception e)

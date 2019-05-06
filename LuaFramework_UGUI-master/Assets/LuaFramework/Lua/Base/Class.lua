@@ -173,7 +173,7 @@ function Class(className, ctype, super, ...)
         class.ctor = function(...) end
     end
     class = setmetatable(class,__ClassBaseMeta)
-    --class.__needReg = ClassGC:NeedRegisterObj(class)
+    class.__needReg = ClassGC:NeedRegisterObj(class)
     class.New = function(...)
         local object = {}
         local proto = {}
@@ -190,9 +190,9 @@ function Class(className, ctype, super, ...)
         object.__addr = tostring(object)
         object.__name = "[Obj:"..tostring(object.__className)..", "..tostring(object.__addr).."]"
         object = setmetatable(object,__ObjectBaseMeta)
-        -- if object.__needReg then
-        --     ClassGC:RegisterInstance(object)
-        -- end
+        if object.__needReg then
+            ClassGC:RegisterInstance(object)
+        end
         object:ctor(...)
         return object
     end

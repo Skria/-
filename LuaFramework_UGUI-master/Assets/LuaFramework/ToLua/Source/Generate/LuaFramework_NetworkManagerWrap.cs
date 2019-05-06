@@ -9,7 +9,6 @@ public class LuaFramework_NetworkManagerWrap
 		L.BeginClass(typeof(LuaFramework.NetworkManager), typeof(Manager));
 		L.RegFunction("OnInit", OnInit);
 		L.RegFunction("Unload", Unload);
-		L.RegFunction("CallMethod", CallMethod);
 		L.RegFunction("AddEvent", AddEvent);
 		L.RegFunction("SendConnect", SendConnect);
 		L.RegFunction("SendMessage", SendMessage);
@@ -43,25 +42,6 @@ public class LuaFramework_NetworkManagerWrap
 			LuaFramework.NetworkManager obj = (LuaFramework.NetworkManager)ToLua.CheckObject<LuaFramework.NetworkManager>(L, 1);
 			obj.Unload();
 			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int CallMethod(IntPtr L)
-	{
-		try
-		{
-			int count = LuaDLL.lua_gettop(L);
-			LuaFramework.NetworkManager obj = (LuaFramework.NetworkManager)ToLua.CheckObject<LuaFramework.NetworkManager>(L, 1);
-			string arg0 = ToLua.CheckString(L, 2);
-			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
-			object[] o = obj.CallMethod(arg0, arg1);
-			ToLua.Push(L, o);
-			return 1;
 		}
 		catch (Exception e)
 		{

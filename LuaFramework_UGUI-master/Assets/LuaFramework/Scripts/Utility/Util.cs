@@ -297,14 +297,14 @@ namespace LuaFramework {
             return 0;
         }
 
-        /// <summary>
-        /// 执行Lua方法
-        /// </summary>
-        public static object[] CallMethod(string module, string func, params object[] args) {
-            LuaManager luaMgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
-            if (luaMgr == null) return null;
-            return luaMgr.CallFunction(module + "." + func, args);
-        }
+        ///// <summary>
+        ///// 执行Lua方法
+        ///// </summary>
+        //public static object[] CallMethod(string module, string func, params object[] args) {
+        //    LuaManager luaMgr = App.Instance.GetManager<LuaManager>(ManagerName.Lua);
+        //    if (luaMgr == null) return null;
+        //    return luaMgr.CallFunction(module + "." + func, args);
+        //}
 
                 /// <summary>
         /// 检查运行环境
