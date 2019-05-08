@@ -11,17 +11,15 @@ namespace LuaFramework
     [RequireComponent(typeof(CanvasScaler))]
     public class Panel : View
     {
-
-        public override void InitView(params object[] args)
+        public Canvas canvas = null;
+        public override void InitView()
         {
             if (moduleName != string.Empty && viewName != string.Empty)
             {
-                //确保注册进LuaClassLoader
                 App.LuaManager.CallFunction("require", AppConst.LuaGameUIRoot + "/" + moduleName + "/" + viewName);
                 handle = App.LuaManager.InitializeLuaObject(viewName);
                 if (handle > 0) App.LuaManager.CallObjectFunction(handle, "InitView", gameObject, handle);
                 NotifyInitOver();
-                OpenView(args);
             }
         }
 
@@ -73,19 +71,6 @@ namespace LuaFramework
         {
             if (handle > 0) App.LuaManager.CallObjectFunction(handle, "DestroyView");
             base.DestroyView();
-        }
-
-        private void Start()
-        {
-            StartCoroutine(StartInit());
-        }
-
-
-        IEnumerator StartInit()
-        {
-            int[] temp = { 1, 2, 3 };
-            yield return new WaitForSeconds(1);
-            InitView(temp);
         }
 
     }

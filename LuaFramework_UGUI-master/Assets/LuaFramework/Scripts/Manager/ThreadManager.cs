@@ -25,7 +25,7 @@ namespace LuaFramework {
     /// <summary>
     /// 当前线程管理器，同时只能做一个任务
     /// </summary>
-    public class ThreadManager : Manager {
+    public class ThreadManager : Base {
         private Thread thread;
         private Action<NotiData> func;
         private Stopwatch sw = new Stopwatch();

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace LuaFramework {
     public class AppConst {
-        public const bool DebugMode = false;                       //调试模式-用于内部测试
+        public const bool DebugMode = false;                       //调试模式-用于内部测试D:\Github\luaframework\LuaFramework_UGUI-master\Packages\com.unity.collab-proxy\Editor\Collab\Views\CollabHistoryDropDownItem.cs
         /// <summary>
         /// 如果想删掉框架自带的例子，那这个例子模式必须要
         /// 关闭，否则会出现一些错误。
         /// </summary>
-        public const bool ExampleMode = true;                       //例子模式 
+        public const bool ExampleMode = false;                       //例子模式 
 
         /// <summary>
         /// 如果开启更新模式，前提必须启动框架自带服务器端。

@@ -66,12 +66,16 @@ public class Packager {
         AssetDatabase.Refresh();
 
         maps.Clear();
-        if (AppConst.LuaBundleMode) {
+        if (AppConst.LuaBundleMode)
+        {
             HandleLuaBundle();
-        } else {
+        }
+        else
+        {
             HandleLuaFile();
         }
-        if (AppConst.ExampleMode) {
+        if (AppConst.ExampleMode)
+        {
             HandleExampleBundle();
         }
         string resPath = "Assets/" + AppConst.AssetDir;

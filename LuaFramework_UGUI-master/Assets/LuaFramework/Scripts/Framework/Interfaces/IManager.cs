@@ -5,5 +5,5 @@
 using UnityEngine;
 using System.Collections;
 
-public interface IManager {
+public interface IManager  {
 }

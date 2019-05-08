@@ -4,7 +4,6 @@ local _ENV = require("3rd.castl.runtime")
 
 
 ClassGC = {}
-print("!!!!!!!!!!!!!!!run")
 ClassGC.instanceMap = {}
 ClassGC.instanceClassMap = {}
 ClassGC.objectRefMap = {}

@@ -6,7 +6,7 @@ public class LuaFramework_NetworkManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(LuaFramework.NetworkManager), typeof(Manager));
+		L.BeginClass(typeof(LuaFramework.NetworkManager), typeof(Base));
 		L.RegFunction("OnInit", OnInit);
 		L.RegFunction("Unload", Unload);
 		L.RegFunction("AddEvent", AddEvent);

@@ -6,7 +6,7 @@ public class ManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(Manager), typeof(Base));
+		L.BeginClass(typeof(Manager), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();

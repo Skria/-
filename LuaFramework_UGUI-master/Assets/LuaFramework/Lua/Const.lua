@@ -6,5 +6,12 @@ CONST = {
 
 	Notify = {
 		UITest = "UITest",
+	},
+
+	UILayer = {
+		Normal = 1,
+        Over = 2,
+        Top = 3,
+        FixTop = 4,
 	}
 }

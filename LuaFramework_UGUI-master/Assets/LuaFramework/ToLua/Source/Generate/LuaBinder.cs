@@ -11,6 +11,7 @@ public static class LuaBinder
 		L.BeginModule(null);
 		LuaInterface_DebuggerWrap.Register(L);
 		LuaProfilerWrap.Register(L);
+		LuaEventWrap.Register(L);
 		ViewWrap.Register(L);
 		ManagerWrap.Register(L);
 		BaseWrap.Register(L);
@@ -99,6 +100,8 @@ public static class LuaBinder
 		LuaFramework_ThreadManagerWrap.Register(L);
 		LuaFramework_NetworkManagerWrap.Register(L);
 		LuaFramework_ResourceManagerWrap.Register(L);
+		LuaFramework_UIManagerWrap.Register(L);
+		LuaFramework_AppWrap.Register(L);
 		L.EndModule();
 		L.BeginModule("System");
 		L.RegFunction("Action", System_Action);

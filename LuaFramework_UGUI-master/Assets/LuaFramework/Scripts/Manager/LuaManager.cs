@@ -9,7 +9,9 @@ namespace LuaFramework {
         private LuaLooper loop = null;
 
         // Use this for initialization
-        void Awake() {
+
+        public override void Init()
+        {
             loader = new LuaLoader();
             lua = new LuaState();
             this.OpenLibs();

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using LuaInterface;
 
 namespace LuaFramework {
-    public class NetworkManager : Manager {
+    public class NetworkManager : Base {
         private SocketClient socket;
         static readonly object m_lockObject = new object();
         static Queue<KeyValuePair<int, ByteBuffer>> mEvents = new Queue<KeyValuePair<int, ByteBuffer>>();

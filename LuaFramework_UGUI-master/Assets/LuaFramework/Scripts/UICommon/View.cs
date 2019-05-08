@@ -23,7 +23,7 @@ public class View : MonoBehaviour
 
 
     [NoToLua]
-    public virtual void InitView(params object[] args)
+    public virtual void InitView()
     {
     }
     [NoToLua]

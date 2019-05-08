@@ -52,7 +52,7 @@ namespace LuaFramework
         /// <summary>
         /// 添加Unity对象
         /// </summary>
-        public T AddManager<T>(string typeName) where T : Component
+        public T AddManager<T>(string typeName) where T : Manager
         {
             object result = null;
             m_Managers.TryGetValue(typeName, out result);
@@ -60,8 +60,9 @@ namespace LuaFramework
             {
                 return (T)result;
             }
-            Component c = GameGlobal.AddComponent<T>();
+            Manager c = GameGlobal.AddComponent<T>();
             m_Managers.Add(typeName, c);
+            c.Init();
             return default(T);
         }
 
@@ -104,6 +105,14 @@ namespace LuaFramework
             get
             {
                 return App.Instance.GetManager<LuaManager>(ManagerName.Lua);
+            }
+        }
+
+        public static UIManager UIManager
+        {
+            get
+            {
+                return App.Instance.GetManager<UIManager>(ManagerName.UI);
             }
         }
     }

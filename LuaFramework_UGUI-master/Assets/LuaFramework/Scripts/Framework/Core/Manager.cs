@@ -2,15 +2,9 @@
 using System.Collections;
 using LuaFramework;
 
-public class Manager : Base, IManager {
+public class Manager : MonoBehaviour{
+    public virtual void Init()
+    {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
 }
