@@ -25,7 +25,7 @@ namespace LuaFramework {
     /// <summary>
     /// 当前线程管理器，同时只能做一个任务
     /// </summary>
-    public class ThreadManager : Base {
+    public class ThreadManager : Manager {
         private Thread thread;
         private Action<NotiData> func;
         private Stopwatch sw = new Stopwatch();
@@ -38,7 +38,7 @@ namespace LuaFramework {
         private ThreadSyncEvent m_SyncEvent;
 
         void Awake() {
-            m_SyncEvent = OnSyncEvent;
+            //m_SyncEvent = OnSyncEvent;
             thread = new Thread(OnUpdate);
         }
 
@@ -57,14 +57,14 @@ namespace LuaFramework {
             }
         }
 
-        /// <summary>
-        /// 通知事件
-        /// </summary>
-        /// <param name="state"></param>
-        private void OnSyncEvent(NotiData data) {
-            if (this.func != null) func(data);  //回调逻辑层
-            facade.SendMessageCommand(data.evName, data.evParam); //通知View层
-        }
+        ///// <summary>
+        ///// 通知事件
+        ///// </summary>
+        ///// <param name="state"></param>
+        //private void OnSyncEvent(NotiData data) {
+        //    if (this.func != null) func(data);  //回调逻辑层
+        //    facade.SendMessageCommand(data.evName, data.evParam); //通知View层
+        //}
 
         // Update is called once per frame
         void OnUpdate() {

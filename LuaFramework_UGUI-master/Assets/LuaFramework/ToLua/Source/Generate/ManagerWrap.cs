@@ -7,9 +7,26 @@ public class ManagerWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(Manager), typeof(UnityEngine.MonoBehaviour));
+		L.RegFunction("Init", Init);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Init(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			Manager obj = (Manager)ToLua.CheckObject<Manager>(L, 1);
+			obj.Init();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

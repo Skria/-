@@ -55,7 +55,7 @@ __ObjectBaseMeta = {
 CloneRef = {}
 -- local socket = require("socket")
 
-function Clone(target,debug)
+function Clone(target)
     local sw
     --[[if AppConst.IsEditor and AppConst.LuaTrace then
         local top = getTopTraceback(2)

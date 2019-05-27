@@ -22,32 +22,25 @@ namespace LuaFramework {
             return t;
         }
 
-        /// <summary>
-        /// 面板管理器
-        /// </summary>
-        public static PanelManager GetPanelManager() {
-            return AppFacade.Instance.GetManager<PanelManager>(ManagerName.Panel);
-        }
+        ///// <summary>
+        ///// 资源管理器
+        ///// </summary>
+        //public static ResourceManager GetResManager() {
+        //    return App.Instance.GetManager<ResourceManager>(ManagerName.Resource);
+        //}
 
-        /// <summary>
-        /// 资源管理器
-        /// </summary>
-        public static ResourceManager GetResManager() {
-            return AppFacade.Instance.GetManager<ResourceManager>(ManagerName.Resource);
-        }
-
-        /// <summary>
-        /// 网络管理器
-        /// </summary>
-        public static NetworkManager GetNetManager() {
-            return AppFacade.Instance.GetManager<NetworkManager>(ManagerName.Network);
-        }
+        ///// <summary>
+        ///// 网络管理器
+        ///// </summary>
+        //public static NetworkManager GetNetManager() {
+        //    return App.Instance.GetManager<NetworkManager>(ManagerName.Network);
+        //}
 
         /// <summary>
         /// 音乐管理器
         /// </summary>
         public static SoundManager GetSoundManager() {
-            return AppFacade.Instance.GetManager<SoundManager>(ManagerName.Sound);
+            return App.Instance.GetManager<SoundManager>(ManagerName.Sound);
         }
 
 

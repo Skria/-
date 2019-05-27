@@ -11,13 +11,6 @@ require("Common")
 
 UIManager = App.UIManager
 function Main()	
-	print("logic start1")
-	UIManager:RegisteredPanel("SMain","TestUI",CONST.UILayer.Normal)
-	UIManager:RegisteredPanel("SMain","Normal1",CONST.UILayer.Normal)
-	UIManager:RegisteredPanel("SMain","Over1",CONST.UILayer.Over)
-	UIManager:RegisteredPanel("SMain","Top1",CONST.UILayer.Top)
-	UIManager:RegisteredPanel("SMain","FixTop1",CONST.UILayer.FixTop)
-
-	print("logic start2")	
-	OpenPanel("TestUI")
+    RegisteredPanel("InGame","UIInGamePanel",CONST.UILayer.Normal)
+    OpenPanel("UIInGamePanel")
 end

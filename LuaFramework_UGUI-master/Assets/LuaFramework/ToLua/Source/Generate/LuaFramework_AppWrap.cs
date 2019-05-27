@@ -14,6 +14,9 @@ public class LuaFramework_AppWrap
 		L.RegVar("Instance", get_Instance, null);
 		L.RegVar("LuaManager", get_LuaManager, null);
 		L.RegVar("UIManager", get_UIManager, null);
+		L.RegVar("UpdateManager", get_UpdateManager, null);
+		L.RegVar("ResourceManager", get_ResourceManager, null);
+		L.RegVar("ObjectPoolManager", get_ObjectPoolManager, null);
 		L.EndClass();
 	}
 
@@ -110,6 +113,48 @@ public class LuaFramework_AppWrap
 		try
 		{
 			ToLua.Push(L, LuaFramework.App.UIManager);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_UpdateManager(IntPtr L)
+	{
+		try
+		{
+			ToLua.Push(L, LuaFramework.App.UpdateManager);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ResourceManager(IntPtr L)
+	{
+		try
+		{
+			ToLua.Push(L, LuaFramework.App.ResourceManager);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ObjectPoolManager(IntPtr L)
+	{
+		try
+		{
+			ToLua.Push(L, LuaFramework.App.ObjectPoolManager);
 			return 1;
 		}
 		catch (Exception e)

@@ -115,5 +115,30 @@ namespace LuaFramework
                 return App.Instance.GetManager<UIManager>(ManagerName.UI);
             }
         }
+
+        public static UpdateManager UpdateManager
+        {
+            get
+            {
+                return App.Instance.GetManager<UpdateManager>(ManagerName.Update);
+            }
+        }
+
+        public static ResourceManager ResourceManager
+        {
+            get
+            {
+                return App.Instance.GetManager<ResourceManager>(ManagerName.Resource);
+            }
+        }
+
+
+        public static ObjectPoolManager ObjectPoolManager
+        {
+            get
+            {
+                return App.Instance.GetManager<ObjectPoolManager>(ManagerName.ObjectPool);
+            }
+        }
     }
 }

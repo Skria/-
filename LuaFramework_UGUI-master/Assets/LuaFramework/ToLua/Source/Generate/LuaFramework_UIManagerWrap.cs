@@ -7,12 +7,34 @@ public class LuaFramework_UIManagerWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(LuaFramework.UIManager), typeof(Manager));
+		L.RegFunction("Init", Init);
 		L.RegFunction("RegisteredPanel", RegisteredPanel);
 		L.RegFunction("OpenPanel", OpenPanel);
 		L.RegFunction("BackPanel", BackPanel);
+		L.RegFunction("SortCanvas", SortCanvas);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("normalLayerStartCount", get_normalLayerStartCount, set_normalLayerStartCount);
+		L.RegVar("topLayerStartCount", get_topLayerStartCount, set_topLayerStartCount);
+		L.RegVar("fixLayerStartCount", get_fixLayerStartCount, set_fixLayerStartCount);
+		L.RegVar("layerDis", get_layerDis, set_layerDis);
 		L.EndClass();
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Init(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)ToLua.CheckObject<LuaFramework.UIManager>(L, 1);
+			obj.Init();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -69,6 +91,22 @@ public class LuaFramework_UIManagerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SortCanvas(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)ToLua.CheckObject<LuaFramework.UIManager>(L, 1);
+			obj.SortCanvas();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int op_Equality(IntPtr L)
 	{
 		try
@@ -83,6 +121,158 @@ public class LuaFramework_UIManagerWrap
 		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_normalLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int ret = obj.normalLayerStartCount;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index normalLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_topLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int ret = obj.topLayerStartCount;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index topLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_fixLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int ret = obj.fixLayerStartCount;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index fixLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_layerDis(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int ret = obj.layerDis;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index layerDis on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_normalLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.normalLayerStartCount = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index normalLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_topLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.topLayerStartCount = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index topLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_fixLayerStartCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.fixLayerStartCount = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index fixLayerStartCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_layerDis(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			LuaFramework.UIManager obj = (LuaFramework.UIManager)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.layerDis = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index layerDis on a nil value");
 		}
 	}
 }

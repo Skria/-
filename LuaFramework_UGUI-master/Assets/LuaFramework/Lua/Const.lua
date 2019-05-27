@@ -13,5 +13,7 @@ CONST = {
         Over = 2,
         Top = 3,
         FixTop = 4,
-	}
+	},
+
+	MaxCurAction = 1000
 }

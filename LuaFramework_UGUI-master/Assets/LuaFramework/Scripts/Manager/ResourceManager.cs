@@ -1,5 +1,4 @@
-﻿#if ASYNC_MODE
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -22,41 +21,79 @@ namespace LuaFramework {
     public class ResourceManager : Manager {
         string m_BaseDownloadingURL = "";
         string[] m_AllManifest = null;
+        public bool LoadFinish = false;
         AssetBundleManifest m_AssetBundleManifest = null;
         Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]>();
         Dictionary<string, AssetBundleInfo> m_LoadedAssetBundles = new Dictionary<string, AssetBundleInfo>();
         Dictionary<string, List<LoadAssetRequest>> m_LoadRequests = new Dictionary<string, List<LoadAssetRequest>>();
-
+        Dictionary<string, UObject> m_LoadUObject = new Dictionary<string, UObject>();
         class LoadAssetRequest {
             public Type assetType;
-            public string[] assetNames;
+            public string assetNames;
             public LuaFunction luaFunc;
-            public Action<UObject[]> sharpFunc;
+            public Action<UObject> sharpFunc;
         }
+
+        public override void Init()
+        {
+
+            Initialize("StreamingAssets", delegate ()
+            {
+
+            });
+        }
+
 
         // Load AssetBundleManifest.
         public void Initialize(string manifestName, Action initOK) {
             m_BaseDownloadingURL = Util.GetRelativePath();
-            LoadAsset<AssetBundleManifest>(manifestName, new string[] { "AssetBundleManifest" }, delegate(UObject[] objs) {
-                if (objs.Length > 0) {
-                    m_AssetBundleManifest = objs[0] as AssetBundleManifest;
+            if (AppConst.BundleMode)
+            {
+                LoadAssetAsync<AssetBundleManifest>("StreamingAssets", delegate (UObject objs) {
+                    m_AssetBundleManifest = objs as AssetBundleManifest;
                     m_AllManifest = m_AssetBundleManifest.GetAllAssetBundles();
-                }
-                if (initOK != null) initOK();
-            });
+                    LoadFinish = true;
+                    if (initOK != null) initOK();
+                });
+            }
+            else
+            {
+                LoadFinish = true;
+            }
+           
+        }
+        [NoToLua]
+        public void LoadPrefabAsync(string path, Action<UObject> func) {
+            LoadAssetAsync<GameObject>(path, func);
         }
 
-        public void LoadPrefab(string abName, string assetName, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, new string[] { assetName }, func);
+        [NoToLua]
+        public GameObject LoadPrefab(string path)
+        {
+            return LoadAsset<GameObject>(path) as GameObject;
         }
 
-        public void LoadPrefab(string abName, string[] assetNames, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, assetNames, func);
+        [NoToLua]
+        public void LoadMaterialAsync(string path, Action<UObject> func)
+        {
+            LoadAssetAsync<Material>(path, func);
         }
 
-        public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {
-            LoadAsset<GameObject>(abName, assetNames, null, func);
+        [NoToLua]
+        public void LoadTextureAsync(string path, Action<UObject> func)
+        {
+            LoadAssetAsync<Texture>(path, func);
         }
+
+        [NoToLua]
+        public void LoadShaderAsync(string path, Action<UObject> func)
+        {
+            LoadAssetAsync<Shader>(path, func);
+        }
+
+        //public void LoadPrefabAsync(string abName, string assetNames, LuaFunction func) {
+        //    LoadAsset<GameObject>(abName, assetNames, null, func);
+        //}
 
         string GetRealAssetPath(string abName) {
             if (abName.Equals(AppConst.AssetDir)) {
@@ -82,32 +119,127 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// 载入素材
+        /// 同步载入素材
         /// </summary>
-        void LoadAsset<T>(string abName, string[] assetNames, Action<UObject[]> action = null, LuaFunction func = null) where T : UObject {
-            abName = GetRealAssetPath(abName);
+        UObject LoadAsset<T>(string path) where T : UObject
+        {
+            int index = path.LastIndexOf("\\");
+            string abName = Util.GetABNameByPath(path.Substring(0,index));
+            string assetNames = Util.GetAssetNameByPath(path);
+            UObject tempObj = null;
+            if (m_LoadUObject.TryGetValue(abName, out tempObj))
+            {
+                return tempObj;
+            }
 
-            LoadAssetRequest request = new LoadAssetRequest();
-            request.assetType = typeof(T);
-            request.assetNames = assetNames;
-            request.luaFunc = func;
-            request.sharpFunc = action;
-
-            List<LoadAssetRequest> requests = null;
-            if (!m_LoadRequests.TryGetValue(abName, out requests)) {
-                requests = new List<LoadAssetRequest>();
-                requests.Add(request);
-                m_LoadRequests.Add(abName, requests);
-                StartCoroutine(OnLoadAsset<T>(abName));
-            } else {
-                requests.Add(request);
+            if (AppConst.BundleMode)
+            {
+                abName = GetRealAssetPath(abName);
+                AssetBundleInfo temp = null;
+                if (m_LoadedAssetBundles.TryGetValue(abName, out temp))
+                {
+                    return temp.m_AssetBundle.LoadAsset(assetNames) as T;
+                }
+                else
+                {
+                    OnLoadAssetBundle<T>(abName);
+                    if (m_LoadedAssetBundles.TryGetValue(abName, out temp))
+                    {
+                        return temp.m_AssetBundle.LoadAsset(assetNames) as T;
+                    }
+                    return null;
+                }
+            }
+            else
+            {
+                Debug.Log(path);
+                return Resources.Load(path);
             }
         }
 
-        IEnumerator OnLoadAsset<T>(string abName) where T : UObject {
+        /// <summary>
+        /// 载入素材
+        /// </summary>
+        void LoadAssetAsync<T>(string path, Action<UObject> action = null, LuaFunction func = null) where T : UObject {
+            UObject temp = null;
+            string abName = Util.GetABNameByPath(path);
+            string assetNames = Util.GetAssetNameByPath(path);
+            if (m_LoadUObject.TryGetValue(abName,out temp))
+            {
+                if (action != null)
+                {
+                    action(temp);
+                }
+                if (func != null)
+                {
+                    func.Call((object)temp);
+                    func.Dispose();
+                }
+            }
+            else
+            {
+                abName = GetRealAssetPath(abName);
+                LoadAssetRequest request = new LoadAssetRequest();
+                request.assetType = typeof(T);
+                request.assetNames = assetNames;
+                request.luaFunc = func;
+                request.sharpFunc = action;
+
+                List<LoadAssetRequest> requests = null;
+                if (!m_LoadRequests.TryGetValue(abName, out requests))
+                {
+                    requests = new List<LoadAssetRequest>();
+                    requests.Add(request);
+                    m_LoadRequests.Add(abName, requests);
+                    StartCoroutine(OnLoadAssetAsync<T>(abName));
+                }
+                else
+                {
+                    requests.Add(request);
+                }
+            }
+        }
+
+        public void OnLoadAssetBundle<T>(string abName) where T : UObject
+        {
+            Type type = typeof(T);
+            AssetBundle assetObj = null;
+            AssetBundleCreateRequest download = null;
+            if (type == typeof(AssetBundleManifest))
+                download = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + "/" + abName);// App.UpdateManager.abPathDic[abName]);
+            else
+            {
+                string[] dependencies = m_AssetBundleManifest.GetAllDependencies(abName);
+                if (dependencies.Length > 0)
+                {
+                    m_Dependencies.Add(abName, dependencies);
+                    for (int i = 0; i < dependencies.Length; i++)
+                    {
+                        string depName = dependencies[i];
+                        AssetBundleInfo bundleInfo = null;
+                        if (m_LoadedAssetBundles.TryGetValue(depName, out bundleInfo))
+                        {
+                            bundleInfo.m_ReferencedCount++;
+                        }
+                        else if (!m_LoadRequests.ContainsKey(depName))
+                        {
+                           OnLoadAssetBundle<T>(depName);
+                        }
+                    }
+                }
+                assetObj = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + abName); // App.UpdateManager.abPathDic[abName]);
+            }
+
+            if (assetObj != null)
+            {
+                m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
+            }
+        }
+
+        IEnumerator OnLoadAssetAsync<T>(string abName) where T : UObject {
             AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
             if (bundleInfo == null) {
-                yield return StartCoroutine(OnLoadAssetBundle(abName, typeof(T)));
+                yield return StartCoroutine(OnLoadAssetBundleAsync(abName, typeof(T)));
 
                 bundleInfo = GetLoadedAssetBundle(abName);
                 if (bundleInfo == null) {
@@ -122,25 +254,22 @@ namespace LuaFramework {
                 yield break;
             }
             for (int i = 0; i < list.Count; i++) {
-                string[] assetNames = list[i].assetNames;
-                List<UObject> result = new List<UObject>();
+                string assetNames = list[i].assetNames;
 
                 AssetBundle ab = bundleInfo.m_AssetBundle;
-                for (int j = 0; j < assetNames.Length; j++) {
-                    string assetPath = assetNames[j];
-                    AssetBundleRequest request = ab.LoadAssetAsync(assetPath, list[i].assetType);
-                    yield return request;
-                    result.Add(request.asset);
-
+                string assetPath = assetNames;
+                AssetBundleRequest request = ab.LoadAssetAsync(assetPath, list[i].assetType);
+                yield return request;
+                UObject result = request.asset;
+                m_LoadUObject.Add(assetNames, result);
                     //T assetObj = ab.LoadAsset<T>(assetPath);
                     //result.Add(assetObj);
-                }
                 if (list[i].sharpFunc != null) {
-                    list[i].sharpFunc(result.ToArray());
+                    list[i].sharpFunc(result);
                     list[i].sharpFunc = null;
                 }
                 if (list[i].luaFunc != null) {
-                    list[i].luaFunc.Call((object)result.ToArray());
+                    list[i].luaFunc.Call((object)result);
                     list[i].luaFunc.Dispose();
                     list[i].luaFunc = null;
                 }
@@ -149,29 +278,33 @@ namespace LuaFramework {
             m_LoadRequests.Remove(abName);
         }
 
-        IEnumerator OnLoadAssetBundle(string abName, Type type) {
-            string url = m_BaseDownloadingURL + abName;
+        IEnumerator OnLoadAssetBundleAsync(string abName, Type type) {
 
-            WWW download = null;
+            AssetBundleCreateRequest download = null;
             if (type == typeof(AssetBundleManifest))
-                download = new WWW(url);
-            else {
+                download = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + "/" + abName);  //App.UpdateManager.abPathDic[abName]);
+            else
+            {
                 string[] dependencies = m_AssetBundleManifest.GetAllDependencies(abName);
-                if (dependencies.Length > 0) {
+                if (dependencies.Length > 0)
+                {
                     m_Dependencies.Add(abName, dependencies);
-                    for (int i = 0; i < dependencies.Length; i++) {
+                    for (int i = 0; i < dependencies.Length; i++)
+                    {
                         string depName = dependencies[i];
                         AssetBundleInfo bundleInfo = null;
-                        if (m_LoadedAssetBundles.TryGetValue(depName, out bundleInfo)) {
+                        if (m_LoadedAssetBundles.TryGetValue(depName, out bundleInfo))
+                        {
                             bundleInfo.m_ReferencedCount++;
-                        } else if (!m_LoadRequests.ContainsKey(depName)) {
-                            yield return StartCoroutine(OnLoadAssetBundle(depName, type));
+                        }
+                        else if (!m_LoadRequests.ContainsKey(depName))
+                        {
+                            yield return StartCoroutine(OnLoadAssetBundleAsync(depName, type));
                         }
                     }
                 }
-                download = WWW.LoadFromCacheOrDownload(url, m_AssetBundleManifest.GetAssetBundleHash(abName), 0);
+                download = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + "/" + abName);  //App.UpdateManager.abPathDic[abName]);
             }
-            yield return download;
 
             AssetBundle assetObj = download.assetBundle;
             if (assetObj != null) {
@@ -236,146 +369,24 @@ namespace LuaFramework {
                 Debug.Log(abName + " has been unloaded successfully");
             }
         }
-    }
-}
-#else
 
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using LuaFramework;
-using LuaInterface;
-using UObject = UnityEngine.Object;
-
-namespace LuaFramework {
-    public class ResourceManager : Manager {
-        private string[] m_Variants = { };
-        private AssetBundleManifest manifest;
-        private AssetBundle shared, assetbundle;
-        private Dictionary<string, AssetBundle> bundles;
-
-        void Awake() {
-        }
-
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        public void Initialize() {
-            byte[] stream = null;
-            string uri = string.Empty;
-            bundles = new Dictionary<string, AssetBundle>();
-            uri = Util.DataPath + AppConst.AssetDir;
-            if (!File.Exists(uri)) return;
-            stream = File.ReadAllBytes(uri);
-            assetbundle = AssetBundle.CreateFromMemoryImmediate(stream);
-            manifest = assetbundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-        }
-
-        /// <summary>
-        /// 载入素材
-        /// </summary>
-        public T LoadAsset<T>(string abname, string assetname) where T : UnityEngine.Object {
-            abname = abname.ToLower();
-            AssetBundle bundle = LoadAssetBundle(abname);
-            return bundle.LoadAsset<T>(assetname);
-        }
-
-        public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {
-            abName = abName.ToLower();
-            List<UObject> result = new List<UObject>();
-            for (int i = 0; i < assetNames.Length; i++) {
-                UObject go = LoadAsset<UObject>(abName, assetNames[i]);
-                if (go != null) result.Add(go);
-            }
-            if (func != null) func.Call((object)result.ToArray());
-        }
-
-        /// <summary>
-        /// 载入AssetBundle
-        /// </summary>
-        /// <param name="abname"></param>
-        /// <returns></returns>
-        public AssetBundle LoadAssetBundle(string abname) {
-            if (!abname.EndsWith(AppConst.ExtName)) {
-                abname += AppConst.ExtName;
-            }
-            AssetBundle bundle = null;
-            if (!bundles.ContainsKey(abname)) {
-                byte[] stream = null;
-                string uri = Util.DataPath + abname;
-                Debug.LogWarning("LoadFile::>> " + uri);
-                LoadDependencies(abname);
-
-                stream = File.ReadAllBytes(uri);
-                bundle = AssetBundle.CreateFromMemoryImmediate(stream); //关联数据的素材绑定
-                bundles.Add(abname, bundle);
-            } else {
-                bundles.TryGetValue(abname, out bundle);
-            }
-            return bundle;
-        }
-
-        /// <summary>
-        /// 载入依赖
-        /// </summary>
-        /// <param name="name"></param>
-        void LoadDependencies(string name) {
-            if (manifest == null) {
-                Debug.LogError("Please initialize AssetBundleManifest by calling AssetBundleManager.Initialize()");
-                return;
-            }
-            // Get dependecies from the AssetBundleManifest object..
-            string[] dependencies = manifest.GetAllDependencies(name);
-            if (dependencies.Length == 0) return;
-
-            for (int i = 0; i < dependencies.Length; i++)
-                dependencies[i] = RemapVariantName(dependencies[i]);
-
-            // Record and load all dependencies.
-            for (int i = 0; i < dependencies.Length; i++) {
-                LoadAssetBundle(dependencies[i]);
-            }
-        }
-
-        // Remaps the asset bundle name to the best fitting asset bundle variant.
-        string RemapVariantName(string assetBundleName) {
-            string[] bundlesWithVariant = manifest.GetAllAssetBundlesWithVariant();
-
-            // If the asset bundle doesn't have variant, simply return.
-            if (System.Array.IndexOf(bundlesWithVariant, assetBundleName) < 0)
-                return assetBundleName;
-
-            string[] split = assetBundleName.Split('.');
-
-            int bestFit = int.MaxValue;
-            int bestFitIndex = -1;
-            // Loop all the assetBundles with variant to find the best fit variant assetBundle.
-            for (int i = 0; i < bundlesWithVariant.Length; i++) {
-                string[] curSplit = bundlesWithVariant[i].Split('.');
-                if (curSplit[0] != split[0])
-                    continue;
-
-                int found = System.Array.IndexOf(m_Variants, curSplit[1]);
-                if (found != -1 && found < bestFit) {
-                    bestFit = found;
-                    bestFitIndex = i;
+        public AssetBundle LoadLuaAssetBundleSync<T>(string abName)
+        {
+            AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
+            if (bundleInfo == null)
+            {
+                OnLoadAssetBundle<AssetBundle>(abName);
+                if (m_LoadedAssetBundles.TryGetValue(abName, out bundleInfo))
+                {
+                    return bundleInfo.m_AssetBundle;
                 }
+                return null;
             }
-            if (bestFitIndex != -1)
-                return bundlesWithVariant[bestFitIndex];
             else
-                return assetBundleName;
+            {
+                return bundleInfo.m_AssetBundle;
+            }
         }
 
-        /// <summary>
-        /// 销毁资源
-        /// </summary>
-        void OnDestroy() {
-            if (shared != null) shared.Unload(true);
-            if (manifest != null) manifest = null;
-            Debug.Log("~ResourceManager was destroy!");
-        }
     }
 }
-#endif

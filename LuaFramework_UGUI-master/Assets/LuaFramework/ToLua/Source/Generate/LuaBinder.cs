@@ -12,9 +12,11 @@ public static class LuaBinder
 		LuaInterface_DebuggerWrap.Register(L);
 		LuaProfilerWrap.Register(L);
 		LuaEventWrap.Register(L);
+		UITweenPositionWrap.Register(L);
 		ViewWrap.Register(L);
 		ManagerWrap.Register(L);
-		BaseWrap.Register(L);
+		TweenPositionWrap.Register(L);
+		TweenBaseWrap.Register(L);
 		L.BeginModule("LuaInterface");
 		LuaInterface_LuaInjectionStationWrap.Register(L);
 		LuaInterface_InjectTypeWrap.Register(L);
@@ -94,14 +96,13 @@ public static class LuaBinder
 		LuaFramework_LuaBehaviourWrap.Register(L);
 		LuaFramework_GameManagerWrap.Register(L);
 		LuaFramework_LuaManagerWrap.Register(L);
-		LuaFramework_PanelManagerWrap.Register(L);
 		LuaFramework_SoundManagerWrap.Register(L);
 		LuaFramework_TimerManagerWrap.Register(L);
 		LuaFramework_ThreadManagerWrap.Register(L);
-		LuaFramework_NetworkManagerWrap.Register(L);
 		LuaFramework_ResourceManagerWrap.Register(L);
 		LuaFramework_UIManagerWrap.Register(L);
 		LuaFramework_AppWrap.Register(L);
+		LuaFramework_ObjectPoolManagerWrap.Register(L);
 		L.EndModule();
 		L.BeginModule("System");
 		L.RegFunction("Action", System_Action);
@@ -112,7 +113,7 @@ public static class LuaBinder
 		L.RegFunction("Func_bool", System_Func_bool);
 		L.RegFunction("Action_UnityEngine_AsyncOperation", System_Action_UnityEngine_AsyncOperation);
 		L.RegFunction("Action_NotiData", System_Action_NotiData);
-		L.RegFunction("Action_UnityEngine_Objects", System_Action_UnityEngine_Objects);
+		L.RegFunction("Action_UnityEngine_Object", System_Action_UnityEngine_Object);
 		L.EndModule();
 		L.EndModule();
 		L.BeginPreLoad();
@@ -565,7 +566,7 @@ public static class LuaBinder
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int System_Action_UnityEngine_Objects(IntPtr L)
+	static int System_Action_UnityEngine_Object(IntPtr L)
 	{
 		try
 		{
@@ -574,13 +575,13 @@ public static class LuaBinder
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.Object[]>>.Create(func);
+				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.Object>>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.Object[]>>.Create(func, self);
+				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.Object>>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

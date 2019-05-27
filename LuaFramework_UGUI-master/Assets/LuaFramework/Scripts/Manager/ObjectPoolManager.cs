@@ -9,8 +9,7 @@ namespace LuaFramework {
     /// </summary>
     public class ObjectPoolManager : Manager {
         private Transform m_PoolRootObject = null;
-        private Dictionary<string, object> m_ObjectPools = new Dictionary<string, object>();
-        private Dictionary<string, GameObjectPool> m_GameObjectPools = new Dictionary<string, GameObjectPool>();
+        private Dictionary<string, PoolObject> m_GameObjectPools = new Dictionary<string, PoolObject>();
 
         Transform PoolRootObject {
             get {
@@ -25,73 +24,117 @@ namespace LuaFramework {
             }
         }
 
-        public GameObjectPool CreatePool(string poolName, int initSize, int maxSize, GameObject prefab) {
-            var pool = new GameObjectPool(poolName, prefab, initSize, maxSize, PoolRootObject);
+        public void CreatePool(string poolName, int initSize, int maxSize, GameObject prefab) {
+            PoolObject pool = new PoolObject(poolName, prefab, initSize, maxSize, PoolRootObject);
             m_GameObjectPools[poolName] = pool;
-            return pool;
         }
 
-        public GameObjectPool GetPool(string poolName) {
-            if (m_GameObjectPools.ContainsKey(poolName)) {
-                return m_GameObjectPools[poolName];
+        public GameObject GetGameObject(string path) {
+            if (!m_GameObjectPools.ContainsKey(path))
+            {
+                GameObject fatherGameobject = App.ResourceManager.LoadPrefab(path);
+                CreatePool(path, 1, 5, fatherGameobject);
             }
-            return null;
+            return m_GameObjectPools[path].GetObjectFromPool();
         }
 
-        public GameObject Get(string poolName) {
-            GameObject result = null;
+        public void ReturnObjectToPool(string poolName, GameObject go) {
             if (m_GameObjectPools.ContainsKey(poolName)) {
-                GameObjectPool pool = m_GameObjectPools[poolName];
-                result = pool.NextAvailableObject();
-                if (result == null) {
-                    Debug.LogWarning("No object available in pool. Consider setting fixedSize to false.: " + poolName);
-                }
-            } else {
-                Debug.LogError("Invalid pool name specified: " + poolName);
-            }
-            return result;
-        }
-
-        public void Release(string poolName, GameObject go) {
-            if (m_GameObjectPools.ContainsKey(poolName)) {
-                GameObjectPool pool = m_GameObjectPools[poolName];
-                pool.ReturnObjectToPool(poolName, go);
+                PoolObject pool = m_GameObjectPools[poolName];
+                pool.ReturnObjectToPool(go);
             } else {
                 Debug.LogWarning("No pool available with name: " + poolName);
             }
         }
 
-        ///-----------------------------------------------------------------------------------------------
+        public void DestoryPool(string poolName, GameObject go)
+        {
+            if (m_GameObjectPools.ContainsKey(poolName))
+            {
+                PoolObject pool = m_GameObjectPools[poolName];
+                pool.Destory(go);
+                m_GameObjectPools[poolName] = null;
+            }
+            else
+            {
+                Debug.LogWarning("No pool destory with name: " + poolName);
+            }
+        }
+    }
 
-        public ObjectPool<T> CreatePool<T>(UnityAction<T> actionOnGet, UnityAction<T> actionOnRelease) where T : class {
-            var type = typeof(T);
-            var pool = new ObjectPool<T>(actionOnGet, actionOnRelease);
-            m_ObjectPools[type.Name] = pool;
-            return pool;
+    public class PoolObject
+    {
+        private int maxSize;
+        private string poolName;
+        private Transform poolRoot;
+        private GameObject poolObjectPrefab;
+        private List<GameObject> unUseList;
+        private List<GameObject> useList;
+        public PoolObject(string poolName, GameObject poolObjectPrefab, int initCount, int maxSize, Transform pool)
+        {
+            unUseList = new List<GameObject>();
+            useList = new List<GameObject>();
+            this.poolName = poolName;
+            this.maxSize = maxSize;
+            this.poolRoot = pool;
+            this.poolObjectPrefab = poolObjectPrefab;
+            unUseList = new List<GameObject>();
+            //populate the pool
+            for (int i = 0; i < initCount; i++)
+            {
+                AddObjectToPool();
+            }
         }
 
-        public ObjectPool<T> GetPool<T>() where T : class {
-            var type = typeof(T);
-            ObjectPool<T> pool = null;
-            if (m_ObjectPools.ContainsKey(type.Name)) {
-                pool = m_ObjectPools[type.Name] as ObjectPool<T>;
-            }
-            return pool;
+        private void AddObjectToPool()
+        {
+            GameObject temp = GameObject.Instantiate(poolObjectPrefab);
+            temp.transform.SetParent(this.poolRoot);
+            unUseList.Add(temp);
         }
 
-        public T Get<T>() where T : class {
-            var pool = GetPool<T>();
-            if (pool != null) {
-                return pool.Get();
+        public void RemoveObjectFromPool(GameObject go)
+        {
+            if (unUseList.Contains(go))
+            {
+                unUseList.Remove(go);
             }
-            return default(T);
+            else
+            {
+                useList.Remove(go);
+            }
         }
 
-        public void Release<T>(T obj) where T : class {
-            var pool = GetPool<T>();
-            if (pool != null) {
-                pool.Release(obj);
+        public GameObject GetObjectFromPool()
+        {
+            if(unUseList.Count <= 0)
+            {
+                AddObjectToPool();
             }
+            GameObject temp = unUseList[0];
+            unUseList.RemoveAt(0);
+            useList.Add(temp);
+            return temp;
+        }
+
+        public void ReturnObjectToPool(GameObject go)
+        {
+            if (useList.Contains(go))
+            {
+                useList.Remove(go);
+            }
+            go.transform.SetParent(this.poolRoot);
+            unUseList.Add(go);
+        }
+
+        public void Destory(GameObject go)
+        {
+            useList.Clear();
+            unUseList.Clear();
+            useList = null;
+            unUseList = null;
+            poolObjectPrefab = null;
+            poolRoot = null;
         }
     }
 }

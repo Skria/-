@@ -10,7 +10,7 @@ public class LuaFramework_AppConstWrap
 		L.RegFunction("New", _CreateLuaFramework_AppConst);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegConstant("DebugMode", 0);
-		L.RegConstant("ExampleMode", 0);
+		L.RegVar("BundleMode", get_BundleMode, set_BundleMode);
 		L.RegConstant("UpdateMode", 0);
 		L.RegConstant("LuaByteMode", 0);
 		L.RegConstant("LuaBundleMode", 0);
@@ -22,6 +22,7 @@ public class LuaFramework_AppConstWrap
 		L.RegVar("ExtName", get_ExtName, null);
 		L.RegVar("AssetDir", get_AssetDir, null);
 		L.RegVar("WebUrl", get_WebUrl, null);
+		L.RegVar("AppResource", get_AppResource, null);
 		L.RegVar("UserId", get_UserId, set_UserId);
 		L.RegVar("SocketPort", get_SocketPort, set_SocketPort);
 		L.RegVar("SocketAddress", get_SocketAddress, set_SocketAddress);
@@ -47,6 +48,20 @@ public class LuaFramework_AppConstWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: LuaFramework.AppConst.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_BundleMode(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushboolean(L, LuaFramework.AppConst.BundleMode);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -139,6 +154,20 @@ public class LuaFramework_AppConstWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_AppResource(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, LuaFramework.AppConst.AppResource);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_UserId(IntPtr L)
 	{
 		try
@@ -201,6 +230,21 @@ public class LuaFramework_AppConstWrap
 		{
 			LuaDLL.lua_pushstring(L, LuaFramework.AppConst.FrameworkRoot);
 			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_BundleMode(IntPtr L)
+	{
+		try
+		{
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			LuaFramework.AppConst.BundleMode = arg0;
+			return 0;
 		}
 		catch (Exception e)
 		{

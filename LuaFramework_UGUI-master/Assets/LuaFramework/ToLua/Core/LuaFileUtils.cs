@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Text;
+using LuaFramework;
 
 namespace LuaInterface
 {
@@ -250,6 +251,12 @@ namespace LuaInterface
 #endif
                 zipName = sb.ToString();
                 zipMap.TryGetValue(zipName, out zipFile);
+            }
+
+            if (zipFile == null)
+            {
+                string abName = zipName + AppConst.ExtName;
+                zipFile = App.ResourceManager.LoadLuaAssetBundleSync<AssetBundle>(zipName + AppConst.ExtName);
             }
 
             if (zipFile != null)

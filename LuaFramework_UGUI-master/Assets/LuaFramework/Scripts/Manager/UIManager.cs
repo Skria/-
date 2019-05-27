@@ -48,13 +48,23 @@ namespace LuaFramework
             {
                 this.uiName = uiName;
                 this.uiLayer = (UILayer)uiLayer;
-                path = "" + uiName;
-                gameObject = Instantiate(Resources.Load<GameObject>(this.path));
+                path = "UIPrefeb\\" + sceneName + "\\" + uiName;
+                gameObject = App.ObjectPoolManager.GetGameObject(path);
                 gameObject.SetActive(false);
                 panel = gameObject.GetComponent<Panel>();
                 panel.canvas = gameObject.GetComponent<Canvas>();
                 panel.canvas.worldCamera = Camera.main;
                 panel.canvas.planeDistance = 1;
+                //App.ResourceManager.LoadPrefabAsync("testhhh", uiName, (Object obj) =>
+                //{
+                //    Debug.Log("异步加载完成" + uiName);
+                //    gameObject = Instantiate(obj as GameObject);
+                //    gameObject.SetActive(false);
+                //    panel = gameObject.GetComponent<Panel>();
+                //    panel.canvas = gameObject.GetComponent<Canvas>();
+                //    panel.canvas.worldCamera = Camera.main;
+                //    panel.canvas.planeDistance = 1;
+                //});
             }
         }
 
@@ -92,20 +102,37 @@ namespace LuaFramework
             }
             if (tempData.gameObject == null)
             {
-                tempData.gameObject = Instantiate(Resources.Load<GameObject>(tempData.path));
+                GameObject obj = App.ObjectPoolManager.GetGameObject(tempData.path);
+                tempData.gameObject = Instantiate(obj);
+                SortCanvas();
+                if (tempData.isInit == false)
+                {
+                    tempData.isInit = true;
+                    tempData.panel.InitView();
+                }
+
+                if (tempData.isOpen == false)
+                {
+                    tempData.isOpen = true;
+                    tempData.panel.OpenView(intent);
+                }
             }
-            SortCanvas();
-            if(tempData.isInit == false)
+            else
             {
-                tempData.isInit = true;
-                tempData.panel.InitView();
+                SortCanvas();
+                if (tempData.isInit == false)
+                {
+                    tempData.isInit = true;
+                    tempData.panel.InitView();
+                }
+
+                if (tempData.isOpen == false)
+                {
+                    tempData.isOpen = true;
+                    tempData.panel.OpenView(intent);
+                }
             }
 
-            if(tempData.isOpen == false)
-            {
-                tempData.isOpen = true;
-                tempData.panel.OpenView(intent);
-            }
         }
 
         public void BackPanel()

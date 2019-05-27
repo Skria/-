@@ -181,7 +181,7 @@ namespace LuaFramework {
         /// </summary>
         public static void ClearMemory() {
             GC.Collect(); Resources.UnloadUnusedAssets();
-            LuaManager mgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
+            LuaManager mgr = App.Instance.GetManager<LuaManager>(ManagerName.Lua);
             if (mgr != null) mgr.LuaGC();
         }
 
@@ -328,6 +328,42 @@ namespace LuaFramework {
             }
 #endif
             return true;
+        }
+
+        public static string GetABNameByPath(string path)
+        {
+            if(path == "StreamingAssets")
+            {
+                return "StreamingAssets";
+            }
+            string ABName = string.Empty;
+            string[] temp = path.Split('\\');
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if(temp[i] == "")
+                {
+                    continue;
+                }
+                if (i != temp.Length - 1)
+                {
+                    ABName = ABName + temp[i] + "_";
+                }
+                else
+                {
+                    ABName = ABName + temp[i];
+                }
+            }
+            return (ABName + AppConst.ExtName).ToLower();
+        }
+
+        public static string GetAssetNameByPath(string path)
+        {
+            if (path == "StreamingAssets")
+            {
+                return "AssetBundleManifest";
+            }
+            string[] temp = path.Split('\\');
+            return temp[temp.Length - 1].ToLower();
         }
     }
 }

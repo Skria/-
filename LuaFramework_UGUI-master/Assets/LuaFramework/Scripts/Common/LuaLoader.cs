@@ -13,7 +13,7 @@ namespace LuaFramework {
         ResourceManager resMgr {
             get { 
                 if (m_resMgr == null)
-                    m_resMgr = AppFacade.Instance.GetManager<ResourceManager>(ManagerName.Resource);
+                    m_resMgr = App.Instance.GetManager<ResourceManager>(ManagerName.Resource);
                 return m_resMgr;
             }
         }
@@ -21,7 +21,7 @@ namespace LuaFramework {
         // Use this for initialization
         public LuaLoader() {
             instance = this;
-            beZip = AppConst.LuaBundleMode;
+            beZip = AppConst.BundleMode;
         }
 
         /// <summary>

@@ -27,6 +27,8 @@ public class LuaFramework_UtilWrap
 		L.RegFunction("LogError", LogError);
 		L.RegFunction("CheckRuntimeFile", CheckRuntimeFile);
 		L.RegFunction("CheckEnvironment", CheckEnvironment);
+		L.RegFunction("GetABNameByPath", GetABNameByPath);
+		L.RegFunction("GetAssetNameByPath", GetAssetNameByPath);
 		L.RegFunction("New", _CreateLuaFramework_Util);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("DataPath", get_DataPath, null);
@@ -415,6 +417,40 @@ public class LuaFramework_UtilWrap
 			ToLua.CheckArgsCount(L, 0);
 			bool o = LuaFramework.Util.CheckEnvironment();
 			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetABNameByPath(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			string o = LuaFramework.Util.GetABNameByPath(arg0);
+			LuaDLL.lua_pushstring(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetAssetNameByPath(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			string o = LuaFramework.Util.GetAssetNameByPath(arg0);
+			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
 		catch (Exception e)
