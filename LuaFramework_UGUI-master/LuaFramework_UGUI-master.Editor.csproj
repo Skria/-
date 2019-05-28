@@ -292,6 +292,12 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets/DOTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="CString">
       <HintPath>Assets/Plugins/CString.dll</HintPath>
     </Reference>
@@ -703,7 +709,7 @@
   <ItemGroup>
     <Compile Include="Assets\LuaFramework\Editor\CustomSettings.cs" />
     <Compile Include="Assets\LuaFramework\Editor\Packager.cs" />
-    <Compile Include="Assets\LuaFramework\Examples\Editor\WelcomeScreen.cs" />
+    <Compile Include="Assets\LuaFramework\Scripts\Editor\ExportUIBinder.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Editor\Extend\ToLua_LuaInterface_EventObject.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaConstructor.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaField.cs" />
@@ -727,11 +733,13 @@
     <Compile Include="Assets\LuaFramework\ToLua\Injection\Editor\ToLuaText.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DOTween\DOTween.XML" />
+    <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\DOTween\readme.txt" />
     <None Include="Assets\LuaFramework\ToLua\Injection\InjectionBlackList.txt" />
     <None Include="Assets\LuaFramework\ToLua\Injection\InjectionBridgeEditorInfo.xml" />
     <None Include="Assets\LuaFramework\ToLua\Injection\LuaInjectionSkipPaths.txt" />
     <None Include="Assets\LuaFramework\ToLua\readme.txt" />
-    <None Include="Assets\StreamingAssets\files.txt" />
     <None Include="Assets\link.xml" />
     <None Include="Packages\com.unity.analytics\DataPrivacy\Unity.Analytics.DataPrivacy.asmdef" />
     <None Include="Packages\com.unity.analytics\Tests\Editor\Unity.Analytics.StandardEvents\Unity.Analytics.StandardEvents.EditorTests.asmdef" />

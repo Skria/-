@@ -1,4 +1,18 @@
 
-*.info
-*.info
-*.meta
+LuaFramework_UGUI-master/Temp
+LuaFramework_UGUI-master/Library
+LuaFramework_UGUI-master/.vs/LuaFramework_UGUI-master/v15/.suo
+LuaFramework_UGUI-master/.vs/LuaFramework_UGUI-master/v15/Server/sqlite3/db.lock
+LuaFramework_UGUI-master/.vs/LuaFramework_UGUI-master/v15/Server/sqlite3/storage.ide
+LuaFramework_UGUI-master/.vs/LuaFramework_UGUI-master/v15/.suo
+LuaFramework_UGUI-master/LuaFramework_UGUI-master.csproj
+LuaFramework_UGUI-master/LuaFramework_UGUI-master.Editor.csproj
+LuaFramework_UGUI-master/ProjectSettings/EditorBuildSettings.asset
+LuaFramework_UGUI-master/ProjectSettings/EditorSettings.asset
+LuaFramework_UGUI-master/ProjectSettings/ProjectSettings.asset
+LuaFramework_UGUI-master/ProjectSettings/UnityConnectSettings.asset
+LuaFramework_UGUI-master/Unity.Analytics.DataPrivacy.csproj
+LuaFramework_UGUI-master/Unity.CollabProxy.Editor.csproj
+LuaFramework_UGUI-master/Unity.PackageManagerUI.Editor.csproj
+LuaFramework_UGUI-master/Unity.TextMeshPro.csproj
+LuaFramework_UGUI-master/Unity.TextMeshPro.Editor.csproj
