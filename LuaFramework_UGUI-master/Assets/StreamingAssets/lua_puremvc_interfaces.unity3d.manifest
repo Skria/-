@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 220544586
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 812d71eb4d8ba34db4f4f10024d104ad
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/PureMvc/Interfaces/ICommand.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IView.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IObserver.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/INotifier.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IController.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IFacade.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IProxy.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IMediator.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/IModel.lua.bytes
+- Assets/Resources/Lua/PureMvc/Interfaces/INotification.lua.bytes
+Dependencies: []

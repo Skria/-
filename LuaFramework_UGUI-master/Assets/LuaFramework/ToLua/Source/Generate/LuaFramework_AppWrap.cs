@@ -17,6 +17,7 @@ public class LuaFramework_AppWrap
 		L.RegVar("UpdateManager", get_UpdateManager, null);
 		L.RegVar("ResourceManager", get_ResourceManager, null);
 		L.RegVar("ObjectPoolManager", get_ObjectPoolManager, null);
+		L.RegVar("AtlasManager", get_AtlasManager, null);
 		L.EndClass();
 	}
 
@@ -155,6 +156,20 @@ public class LuaFramework_AppWrap
 		try
 		{
 			ToLua.Push(L, LuaFramework.App.ObjectPoolManager);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_AtlasManager(IntPtr L)
+	{
+		try
+		{
+			ToLua.Push(L, LuaFramework.App.AtlasManager);
 			return 1;
 		}
 		catch (Exception e)

@@ -21,6 +21,7 @@ public class LuaFramework_AppConstWrap
 		L.RegVar("AppPrefix", get_AppPrefix, null);
 		L.RegVar("ExtName", get_ExtName, null);
 		L.RegVar("AssetDir", get_AssetDir, null);
+		L.RegVar("AtlasRoot", get_AtlasRoot, null);
 		L.RegVar("WebUrl", get_WebUrl, null);
 		L.RegVar("AppResource", get_AppResource, null);
 		L.RegVar("UserId", get_UserId, set_UserId);
@@ -131,6 +132,20 @@ public class LuaFramework_AppConstWrap
 		try
 		{
 			LuaDLL.lua_pushstring(L, LuaFramework.AppConst.AssetDir);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_AtlasRoot(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, LuaFramework.AppConst.AtlasRoot);
 			return 1;
 		}
 		catch (Exception e)

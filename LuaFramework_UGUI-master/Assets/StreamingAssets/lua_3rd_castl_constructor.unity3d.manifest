@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 1588235962
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1ef29a79a5fb67eb68a60f0f941ca175
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/3rd/castl/constructor/number.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/date.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/string.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/regexp.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/object.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/boolean.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/function.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/array.lua.bytes
+Dependencies: []

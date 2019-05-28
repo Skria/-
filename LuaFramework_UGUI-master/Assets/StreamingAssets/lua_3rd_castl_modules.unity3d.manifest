@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 2353047635
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67294a5638ba5c3ec9412f75386d06a8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/3rd/castl/modules/dateparser.lua.bytes
+- Assets/Resources/Lua/3rd/castl/modules/regexphelper.lua.bytes
+- Assets/Resources/Lua/3rd/castl/modules/dkjson.lua.bytes
+- Assets/Resources/Lua/3rd/castl/modules/bit.lua.bytes
+- Assets/Resources/Lua/3rd/castl/modules/common.lua.bytes
+- Assets/Resources/Lua/3rd/castl/modules/error_helper.lua.bytes
+Dependencies: []

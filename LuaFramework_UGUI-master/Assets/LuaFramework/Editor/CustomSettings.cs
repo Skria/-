@@ -171,9 +171,12 @@ public static class CustomSettings
         _GT(typeof(ResourceManager)),
         _GT(typeof(UIManager)),
         _GT(typeof(App)),
+        _GT(typeof(Image)),
+        _GT(typeof(Sprite)),
         _GT(typeof(LuaEvent)),
         _GT(typeof(ObjectPoolManager)),
         _GT(typeof(UITweenPosition)),
+        _GT(typeof(AtlasManager)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

@@ -13,6 +13,7 @@ public static class LuaBinder
 		LuaProfilerWrap.Register(L);
 		LuaEventWrap.Register(L);
 		UITweenPositionWrap.Register(L);
+		AtlasManagerWrap.Register(L);
 		ViewWrap.Register(L);
 		ManagerWrap.Register(L);
 		TweenPositionWrap.Register(L);
@@ -60,9 +61,11 @@ public static class LuaBinder
 		UnityEngine_RenderSettingsWrap.Register(L);
 		UnityEngine_ResourcesWrap.Register(L);
 		UnityEngine_RectTransformWrap.Register(L);
+		UnityEngine_SpriteWrap.Register(L);
 		UnityEngine_AudioBehaviourWrap.Register(L);
 		L.BeginModule("UI");
 		UnityEngine_UI_TextWrap.Register(L);
+		UnityEngine_UI_ImageWrap.Register(L);
 		UnityEngine_UI_MaskableGraphicWrap.Register(L);
 		UnityEngine_UI_GraphicWrap.Register(L);
 		L.EndModule();

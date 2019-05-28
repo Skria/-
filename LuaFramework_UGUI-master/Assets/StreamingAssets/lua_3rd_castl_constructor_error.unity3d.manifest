@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 4165379765
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 81639bf1dd76142786255c4bf2062ef1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/3rd/castl/constructor/error/reference_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/eval_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/uri_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/range_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/type_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/syntax_error.lua.bytes
+- Assets/Resources/Lua/3rd/castl/constructor/error/call_site.lua.bytes
+Dependencies: []

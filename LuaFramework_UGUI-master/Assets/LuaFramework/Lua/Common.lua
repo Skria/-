@@ -1,6 +1,6 @@
 local _ENV = require("3rd.castl.runtime")
 UIManager = App.UIManager
-
+AtlasManager = App.AtlasManager
 function OpenPanel(uiName,intent)
 	UIManager:OpenPanel(uiName,intent)
 end
@@ -21,4 +21,9 @@ function LoadUIBinder(module, panelName, gameObject)
     end
     local binderIns = binder.New(gameObject)
     return binderIns
+end
+
+
+function GetSprite(atlasName,spriteName)
+	AtlasManager:GetSprite(atlasName,spriteName)
 end

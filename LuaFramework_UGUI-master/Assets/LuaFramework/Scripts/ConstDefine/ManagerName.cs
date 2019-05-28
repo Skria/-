@@ -14,6 +14,6 @@ namespace LuaFramework {
         public const string ObjectPool = "ObjectPoolManager";
         public const string UI = "UIManager";
         public const string Update = "UpdateManager";
-        
+        public const string Atlas = "AtlasManager";
     }
 }

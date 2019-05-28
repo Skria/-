@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 2186786855
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a38c4810b2bae0a0990d175b61be2ee2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 93db10144969c717d293701129ec5177
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 48b7a8d8a6a75b44ca404cc4d956a7db, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 302b167dbffd2614ca285a421fbe0295, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/UIPrefeb/InGame/UIInGamePanel.prefab
+Dependencies: []

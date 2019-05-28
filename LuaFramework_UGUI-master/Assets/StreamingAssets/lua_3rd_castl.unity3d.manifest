@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 3663295504
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b0d18b284c6d8ae4cfbf7b0114bbc63e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/3rd/castl/internal.lua.bytes
+- Assets/Resources/Lua/3rd/castl/json.lua.bytes
+- Assets/Resources/Lua/3rd/castl/core_objects.lua.bytes
+- Assets/Resources/Lua/3rd/castl/others.lua.bytes
+- Assets/Resources/Lua/3rd/castl/protos.lua.bytes
+- Assets/Resources/Lua/3rd/castl/global_functions.lua.bytes
+- Assets/Resources/Lua/3rd/castl/eval.lua.bytes
+- Assets/Resources/Lua/3rd/castl/runtime.lua.bytes
+- Assets/Resources/Lua/3rd/castl/jssupport.lua.bytes
+- Assets/Resources/Lua/3rd/castl/nodejs.lua.bytes
+- Assets/Resources/Lua/3rd/castl/math.lua.bytes
+Dependencies: []

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 240015596
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fdaf2860f3119f44c6a425011c98cc68
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/PureMvc/Patterns/Mediator/Mediator.lua.bytes
+Dependencies: []

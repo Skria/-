@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1213463221
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e9cd2c90e8fda9937f4c81442599bdc4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/Logic/Ingame/Actor.lua.bytes
+- Assets/Resources/Lua/Logic/Ingame/Skill.lua.bytes
+- Assets/Resources/Lua/Logic/Ingame/Buff.lua.bytes
+Dependencies: []

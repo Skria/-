@@ -1,0 +1,134 @@
+ManifestFileVersion: 0
+CRC: 1783386700
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: art_atlas.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: lua_3rd_castl_constructor_error.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: lua_3rd_castl_constructor.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: lua_3rd_castl_jscompile.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: lua_3rd_castl_modules.unity3d
+      Dependencies: {}
+    Info_5:
+      Name: lua_3rd_castl_prototype_error.unity3d
+      Dependencies: {}
+    Info_6:
+      Name: lua_3rd_castl_prototype.unity3d
+      Dependencies: {}
+    Info_7:
+      Name: lua_3rd_castl.unity3d
+      Dependencies: {}
+    Info_8:
+      Name: lua_3rd_cjson.unity3d
+      Dependencies: {}
+    Info_9:
+      Name: lua_3rd_luabitop.unity3d
+      Dependencies: {}
+    Info_10:
+      Name: lua_3rd_pbc.unity3d
+      Dependencies: {}
+    Info_11:
+      Name: lua_3rd_pblua.unity3d
+      Dependencies: {}
+    Info_12:
+      Name: lua_3rd_sproto.unity3d
+      Dependencies: {}
+    Info_13:
+      Name: lua_base.unity3d
+      Dependencies: {}
+    Info_14:
+      Name: lua_cjson.unity3d
+      Dependencies: {}
+    Info_15:
+      Name: lua_common.unity3d
+      Dependencies: {}
+    Info_16:
+      Name: lua_jit.unity3d
+      Dependencies: {}
+    Info_17:
+      Name: lua_logic_ingame.unity3d
+      Dependencies: {}
+    Info_18:
+      Name: lua_logic.unity3d
+      Dependencies: {}
+    Info_19:
+      Name: lua_lpeg.unity3d
+      Dependencies: {}
+    Info_20:
+      Name: lua_mediator_ingame.unity3d
+      Dependencies: {}
+    Info_21:
+      Name: lua_misc.unity3d
+      Dependencies: {}
+    Info_22:
+      Name: lua_protobuf.unity3d
+      Dependencies: {}
+    Info_23:
+      Name: lua_puremvc_core.unity3d
+      Dependencies: {}
+    Info_24:
+      Name: lua_puremvc_interfaces.unity3d
+      Dependencies: {}
+    Info_25:
+      Name: lua_puremvc_patterns_command.unity3d
+      Dependencies: {}
+    Info_26:
+      Name: lua_puremvc_patterns_facade.unity3d
+      Dependencies: {}
+    Info_27:
+      Name: lua_puremvc_patterns_mediator.unity3d
+      Dependencies: {}
+    Info_28:
+      Name: lua_puremvc_patterns_observer.unity3d
+      Dependencies: {}
+    Info_29:
+      Name: lua_puremvc_patterns_proxy.unity3d
+      Dependencies: {}
+    Info_30:
+      Name: lua_puremvc_patterns_viewcomponent.unity3d
+      Dependencies: {}
+    Info_31:
+      Name: lua_socket.unity3d
+      Dependencies: {}
+    Info_32:
+      Name: lua_system_injection.unity3d
+      Dependencies: {}
+    Info_33:
+      Name: lua_system_reflection.unity3d
+      Dependencies: {}
+    Info_34:
+      Name: lua_system.unity3d
+      Dependencies: {}
+    Info_35:
+      Name: lua_uibinder_ingame.unity3d
+      Dependencies: {}
+    Info_36:
+      Name: lua_unityengine.unity3d
+      Dependencies: {}
+    Info_37:
+      Name: lua_view_ingame.unity3d
+      Dependencies: {}
+    Info_38:
+      Name: lua.unity3d
+      Dependencies: {}
+    Info_39:
+      Name: scene.unity3d
+      Dependencies:
+        Dependency_0: uiprefeb_ingame.unity3d
+    Info_40:
+      Name: uiprefeb_ingame.unity3d
+      Dependencies: {}
+    Info_41:
+      Name: uiprefeb_lobby.unity3d
+      Dependencies: {}
+    Info_42:
+      Name: uiprefeb_login.unity3d
+      Dependencies: {}

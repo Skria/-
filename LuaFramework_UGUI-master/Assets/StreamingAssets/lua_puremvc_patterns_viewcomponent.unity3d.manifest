@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 4245589693
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 426eb4ff039a63301e05e5704b28102c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/PureMvc/Patterns/ViewComponent/ViewComponent.lua.bytes
+Dependencies: []

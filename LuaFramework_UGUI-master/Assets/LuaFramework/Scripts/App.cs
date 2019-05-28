@@ -140,5 +140,13 @@ namespace LuaFramework
                 return App.Instance.GetManager<ObjectPoolManager>(ManagerName.ObjectPool);
             }
         }
+
+        public static AtlasManager AtlasManager
+        {
+            get
+            {
+                return App.Instance.GetManager<AtlasManager>(ManagerName.Atlas);
+            }
+        }
     }
 }

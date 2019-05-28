@@ -19,6 +19,7 @@ public class SMain : MonoBehaviour
         App.Instance.AddManager<UpdateManager>(ManagerName.Update);
         App.Instance.AddManager<ResourceManager>(ManagerName.Resource);
         App.Instance.AddManager<ObjectPoolManager>(ManagerName.ObjectPool);
+        App.Instance.AddManager<AtlasManager>(ManagerName.Atlas);
         StartCoroutine(TempC());
 
         //AppFacade.Instance.AddManager<SoundManager>(ManagerName.Sound);

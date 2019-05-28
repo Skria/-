@@ -265,12 +265,6 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>D:/Github/luaframework/LuaFramework_UGUI-master/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>D:/Unity2018.3.5/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>D:/Unity2018.3.5/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Unity2018.3.5\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
     </Reference>
@@ -655,6 +649,7 @@
     <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\ManagerName.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\NotiConst.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\LuaCallback.cs" />
+    <Compile Include="Assets\LuaFramework\Scripts\Manager\AtlasManager.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Manager\Interface\ITimerBehaviour.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Manager\LuaManager.cs" />
@@ -735,6 +730,7 @@
     <Compile Include="Assets\LuaFramework\ToLua\Reflection\LuaMethod.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Reflection\LuaProperty.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Reflection\LuaReflection.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\AtlasManagerWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\DelegateFactory.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaBinder.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaEventWrap.cs" />
@@ -805,12 +801,14 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SleepTimeoutWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SpaceWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SphereColliderWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SpriteWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_Texture2DWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TextureWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TimeWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TrackedReferenceWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TransformWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_GraphicWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_ImageWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_MaskableGraphicWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_TextWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_WrapModeWrap.cs" />
@@ -850,6 +848,7 @@
     <None Include="Assets\LuaFramework\ToLua\Injection\InjectionBridgeEditorInfo.xml" />
     <None Include="Assets\LuaFramework\ToLua\Injection\LuaInjectionSkipPaths.txt" />
     <None Include="Assets\LuaFramework\ToLua\readme.txt" />
+    <None Include="Assets\StreamingAssets\files.txt" />
     <None Include="Assets\link.xml" />
     <None Include="Packages\com.unity.analytics\DataPrivacy\Unity.Analytics.DataPrivacy.asmdef" />
     <None Include="Packages\com.unity.analytics\Tests\Editor\Unity.Analytics.StandardEvents\Unity.Analytics.StandardEvents.EditorTests.asmdef" />

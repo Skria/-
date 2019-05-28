@@ -121,7 +121,7 @@ namespace LuaFramework {
         /// <summary>
         /// 同步载入素材
         /// </summary>
-        UObject LoadAsset<T>(string path) where T : UObject
+        public UObject LoadAsset<T>(string path) where T : UObject
         {
             int index = path.LastIndexOf("\\");
             string abName = Util.GetABNameByPath(path.Substring(0,index));

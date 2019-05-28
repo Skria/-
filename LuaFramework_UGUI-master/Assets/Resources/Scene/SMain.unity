@@ -316,6 +316,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInGamePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1491539875134341395, guid: 43c530dcf6f721d408aef44f41170230,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8868174331936876964, guid: 43c530dcf6f721d408aef44f41170230,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -420,6 +425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823451230582924598, guid: 43c530dcf6f721d408aef44f41170230,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43c530dcf6f721d408aef44f41170230, type: 3}

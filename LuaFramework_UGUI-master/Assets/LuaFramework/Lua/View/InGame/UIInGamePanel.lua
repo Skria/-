@@ -26,6 +26,8 @@ function UIInGamePanel:InitView(gameObject)
     self.enemyActorTeam = {}
     self.curActionMove = {}
     self.gameTurnC = nil
+
+   
 end
 
 
@@ -34,6 +36,9 @@ function UIInGamePanel:OpenView(intent)
     self:GameStart()
 end
 
+function UIInGamePanel:GameStart()
+    self:CalculateAction()
+end
 
 function UIInGamePanel:CalculateAction()
     local time = {
@@ -89,6 +94,7 @@ function UIInGamePanel:CalculateAction()
         self.iconTweenGroup[temp.actorHandle].duration = minDuration/50
         if temp.time == minTime then
             sumCount = sumCount + 1
+            self.binder.m_testImgeImage.sprite = GetSprite("HeroIcon",temp.actorHandle)
             temp.actor:TurnAction(self,function( )
                 finishCount = finishCount + 1
                 self.iconRectGroup[temp.actorHandle].anchoredPosition = self.startPos
@@ -113,9 +119,7 @@ function UIInGamePanel:CalculateAction()
     end)
 end
 
-function UIInGamePanel:GameStart()
-    self:CalculateAction()
-end
+
 
 function UIInGamePanel:InitActor()
     local temp = {

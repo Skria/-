@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3420177708
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d3205dd60944b2f0bf71c3862706e9fe
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/PureMvc/Patterns/Observer/Notification.lua.bytes
+- Assets/Resources/Lua/PureMvc/Patterns/Observer/Notifier.lua.bytes
+- Assets/Resources/Lua/PureMvc/Patterns/Observer/Observer.lua.bytes
+Dependencies: []

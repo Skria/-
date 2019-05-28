@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1404233001
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 868ecb656b5afca7332c349d3353db05
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/Mediator/InGame/UIInGamePanelMediator.lua.bytes
+Dependencies: []
