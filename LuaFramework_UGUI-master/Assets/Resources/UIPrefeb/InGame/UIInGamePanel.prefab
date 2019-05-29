@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: -9124672117421158573}
   - component: {fileID: 8671405258584353398}
   - component: {fileID: -4433804121311640153}
+  - component: {fileID: 669287962}
   m_Layer: 5
   m_Name: UIInGamePanel
   m_TagString: Untagged
@@ -191,6 +192,19 @@ MonoBehaviour:
   moduleName: InGame
   viewName: UIInGamePanel
   canvas: {fileID: 0}
+--- !u!114 &669287962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491539875134341395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92fa09b5ddbf4c4f8474ac3341ea5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imge: {fileID: 7823451230582924598}
 --- !u!1 &2168232190368172440
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +886,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8791b106885a5764baf4d6f870203611, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

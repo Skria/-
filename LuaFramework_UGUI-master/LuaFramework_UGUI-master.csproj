@@ -265,6 +265,12 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>D:/Github/luaframework/LuaFramework_UGUI-master/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:/Unity2018.3.5/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:/Unity2018.3.5/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Unity2018.3.5\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
     </Reference>

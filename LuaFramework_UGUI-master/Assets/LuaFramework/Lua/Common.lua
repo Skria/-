@@ -25,5 +25,5 @@ end
 
 
 function GetSprite(atlasName,spriteName)
-	AtlasManager:GetSprite(atlasName,spriteName)
+	return AtlasManager:GetSprite(atlasName,spriteName)
 end
