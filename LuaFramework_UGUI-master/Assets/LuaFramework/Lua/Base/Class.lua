@@ -2,7 +2,7 @@
 local _ENV = require("3rd.castl.runtime")
 
 __ClassTracerTop = ""
- __ClassNeedTrace =  false--AppConst.LuaTrace
+ __ClassNeedTrace =  true--AppConst.LuaTrace
 
 __ClassBaseMeta = {
     __tostring = function (tab)
