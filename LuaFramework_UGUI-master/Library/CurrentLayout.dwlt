@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 4}
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 94
+  controlID: 109
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -96,7 +96,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 998
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &5
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 498}
   m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 43
+  controlID: 107
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 498}
   m_MaxSize: {x: 14006, y: 14048}
   vertical: 1
-  controlID: 44
+  controlID: 108
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 274}
   m_MaxSize: {x: 14006, y: 10024}
   vertical: 0
-  controlID: 45
+  controlID: 57
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -393,20 +393,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/Altas/HeroIcon
+    - Assets/LuaFramework
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Art/Altas/HeroIcon
+  - Assets/LuaFramework
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Github\luaframework\LuaFramework_UGUI-master
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5e290000
-    m_LastClickedID: 10590
-    m_ExpandedIDs: 00000000fe2700002c280000782800007c280000362a0000d42b0000002c0000042c0000142c0000462c0000d82c00004e2d0000622d00009a2e00009c2e00009e2e0000a02e0000a22e0000a42e0000a62e0000a82e0000aa2e0000ac2e0000ae2e0000b02e0000b22e0000b42e0000b62e0000b82e0000ba2e0000bc2e0000be2e000000ca9a3b
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000fe2700002c280000782800007c280000362a0000002c0000042c0000142c0000d82c00004e2d0000622d00003c2e00003e2e0000402e0000422e0000442e0000462e0000482e00004a2e00004c2e00004e2e0000502e0000522e0000542e0000562e0000582e00005a2e00005c2e00005e2e0000602e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -434,7 +434,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fe2700002c280000782800007c280000362a0000d42b0000002c0000042c0000142c0000462c0000d82c00004e2d0000622d00009a2e00009c2e00009e2e0000a02e0000a22e0000a42e0000a62e0000a82e0000aa2e0000ac2e0000ae2e0000b02e0000b22e0000b42e0000b62e0000b82e0000ba2e0000bc2e0000be2e0000
+    m_ExpandedIDs: 00000000fe2700002c280000782800007c280000362a0000002c0000042c0000142c0000d82c00004e2d0000622d00003c2e00003e2e0000402e0000422e0000442e0000462e0000482e00004a2e00004c2e00004e2e0000502e0000522e0000542e0000562e0000582e00005a2e00005c2e00005e2e0000602e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -677,23 +677,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7a2d0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff
+      m_SelectedIDs: 06f8ffff
+      m_LastClickedID: -2042
+      m_ExpandedIDs: 02f8ffff1cf8ffffc4f9ffffdef9ffff10fbffffd4fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: m_testImge
+        m_OriginalName: m_testImge
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -1286
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 12}
       m_SearchString: 

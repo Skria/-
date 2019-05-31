@@ -13,7 +13,5 @@ function UIInGamePanelBinder:ctor(gameObject)
     self.m_3Image = self.m_3:GetComponent("Image")
     self.m_4 = transform:Find("Image/m_4").gameObject
     self.m_4Image = self.m_4:GetComponent("Image")
-    self.m_testImge = transform:Find("m_testImge").gameObject
-    self.m_testImgeImage = self.m_testImge:GetComponent("Image")
 end
 return UIInGamePanelBinder

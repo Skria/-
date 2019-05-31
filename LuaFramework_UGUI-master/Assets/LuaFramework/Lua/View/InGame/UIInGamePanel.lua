@@ -92,10 +92,15 @@ function UIInGamePanel:CalculateAction()
         local temp = time[i]
         self.iconTweenGroup[temp.actorHandle].from = self.iconRectGroup[temp.actorHandle].anchoredPosition
         self.iconTweenGroup[temp.actorHandle].duration = minDuration/50
-        if temp.time == minTime then
+        if temp.time == minTime and temp.actor.actorStatus ~= CONST.ActorStatus.Dead then
             sumCount = sumCount + 1
-            self.binder.m_testImgeImage.sprite = GetSprite("HeroIcon",temp.actorHandle)
-            temp.actor:TurnAction(self,function( )
+            local aimActor = nil
+            if temp.actor.playerTeam == CONST.PlayerTeam.Enemy then
+                aimActor = self.myActorTeam[1]
+            else
+                aimActor = self.enemyActorTeam[1]
+            end
+            temp.actor:TurnAction(self,aimActor,function()
                 finishCount = finishCount + 1
                 self.iconRectGroup[temp.actorHandle].anchoredPosition = self.startPos
             end)
@@ -126,7 +131,7 @@ function UIInGamePanel:InitActor()
         {
             hp = 100,
             speed = 1,
-            attack = 5,
+            attack = 7,
         },
         {
             hp = 100,
@@ -136,27 +141,44 @@ function UIInGamePanel:InitActor()
         {
             hp = 100,
             speed = 5,
-            attack = 5,
+            attack = 3,
         },
         {
             hp = 100,
             speed = 7,
-            attack = 5,
+            attack = 1,
         }
     }
     for i=1,2 do
-        local actor = Actor.New(i,temp[i],self)
+        local actor = Actor.New(i,temp[i],CONST.PlayerTeam.Myself,self)
         self.curActionMove[i] = 0 
         table.insert(self.myActorTeam,actor)
     end
 
     for i=3,4 do
-        local actor = Actor.New(i,temp[i],self)
+        local actor = Actor.New(i,temp[i],CONST.PlayerTeam.Enemy,self)
         self.curActionMove[i] = 0 
         table.insert(self.enemyActorTeam,actor)
     end
 end
 
+
+function UIInGamePanel:GetActorByActorHandle(actorHandle)
+    local actor = nil    
+    for i=1,2 do
+        if self.myActorTeam[i].actorHandle  == actorHandle then
+            actor = self.myActorTeam[i].actorHandle
+            return actor
+        end
+
+        if self.enemyActorTeam[i].actorHandle  == actorHandle then
+            actor = self.enemyActorTeam[i].actorHandle
+            return actor
+        end
+    end
+    print("角色不存在")
+    return nil
+end
 
 function UIInGamePanel:CloseView()
 

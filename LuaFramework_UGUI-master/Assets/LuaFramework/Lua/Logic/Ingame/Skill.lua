@@ -1,16 +1,20 @@
 local Skill = Class("Skill", CONST.ClassType.CORE)
-
-function Actor:ctor(fromActorHandle,toActorHandle,inGamePanel,skillId)
+local Buff = require("Logic/Ingame/Buff")
+function Skill:ctor(inGamePanel,skillId,fromActor,aimActor)
     self.skillId = skillId
-    self.fromActorHandle = fromActorHandle
-    self.toActorHandle = toActorHandle
     self.inGamePanel = inGamePanel
-    self.buffQuene = {}
-
-
+    self.fromActor = fromActor
+    self.aimActor = aimActor
     self:SkillInit()
 end
 
-function Actor:SkillInit()
-   
+function Skill:DoSkill()
+    local buff = Buff.New(self.inGamePanel,self.buffId,self.fromActor,self.aimActor)
+    self.fromActor:AddBuff(buff)
 end
+
+function Skill:SkillInit()
+    self.buffId = 1
+end
+
+return Skill

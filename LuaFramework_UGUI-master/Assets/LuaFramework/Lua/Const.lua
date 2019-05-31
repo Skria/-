@@ -15,5 +15,17 @@ CONST = {
         FixTop = 4,
 	},
 
-	MaxCurAction = 1000
+	MaxCurAction = 1000,
+
+	ActorStatus = {
+		None = 0,
+		Live = 1,
+		Dead = 2,
+	},
+
+	PlayerTeam = {
+		None = 0,
+		Myself = 1,
+		Enemy = 2,
+	},
 }

@@ -112,7 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &669287959
+--- !u!1001 &846009479
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -123,11 +123,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UIInGamePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1491539875134341395, guid: 43c530dcf6f721d408aef44f41170230,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8868174331936876964, guid: 43c530dcf6f721d408aef44f41170230,
         type: 3}
@@ -234,8 +229,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 669287962, guid: 43c530dcf6f721d408aef44f41170230, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43c530dcf6f721d408aef44f41170230, type: 3}
 --- !u!1 &1269885824
 GameObject:
